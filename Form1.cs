@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Calculator2
@@ -30,70 +23,28 @@ namespace Calculator2
 			divisionByZeroErrorMessage = "Dzielenie przez zero!";
 		}
 
-		private void buttonC_Click(object sender, EventArgs e)
-		{
-			input.Text = "0";
-			output.Text = String.Empty;
-			this.op = String.Empty;
-			startNewNumber = true;
-		}
-
-		private void buttonDel_Click(object sender, EventArgs e)
-		{
-			if (input.Text.Length == 0) return;
-			if (input.Text == divisionByZeroErrorMessage) {
-				input.Text = "0";
-				startNewNumber = true;
-			} else if (input.Text.Length == 1) {
-				input.Text = "0";
-			} else {
-				input.Text = input.Text.Remove(input.Text.Length - 1);
-			}
-		}
-
 		private void buttonDiv_Click(object sender, EventArgs e)
 		{
 			operatorClicked("/");
 		}
-
-		private void button7_Click(object sender, EventArgs e)
-		{
-			numberClicked("7");
-		}
-
-		private void button8_Click(object sender, EventArgs e)
-		{
-			numberClicked("8");
-		}
-
-		private void button9_Click(object sender, EventArgs e)
-		{
-			numberClicked("9");
-		}
-
 		private void buttonMul_Click(object sender, EventArgs e)
 		{
 			operatorClicked("*");
 		}
 
-		private void button4_Click(object sender, EventArgs e)
-		{
-			numberClicked("4");
-		}
-
-		private void button5_Click(object sender, EventArgs e)
-		{
-			numberClicked("5");
-		}
-
-		private void button6_Click(object sender, EventArgs e)
-		{
-			numberClicked("6");
-		}
-
 		private void buttonSub_Click(object sender, EventArgs e)
 		{
 			operatorClicked("-");
+		}
+
+		private void buttonAdd_Click(object sender, EventArgs e)
+		{
+			operatorClicked("+");
+		}
+
+		private void button0_Click(object sender, EventArgs e)
+		{
+			numberClicked("0");
 		}
 
 		private void button1_Click(object sender, EventArgs e)
@@ -111,25 +62,45 @@ namespace Calculator2
 			numberClicked("3");
 		}
 
-		private void buttonAdd_Click(object sender, EventArgs e)
+		private void button4_Click(object sender, EventArgs e)
 		{
-			operatorClicked("+");
+			numberClicked("4");
+		}
+
+		private void button5_Click(object sender, EventArgs e)
+		{
+			numberClicked("5");
+		}
+
+		private void button6_Click(object sender, EventArgs e)
+		{
+			numberClicked("6");
+		}
+
+		private void button7_Click(object sender, EventArgs e)
+		{
+			numberClicked("7");
+		}
+
+		private void button8_Click(object sender, EventArgs e)
+		{
+			numberClicked("8");
+		}
+
+		private void button9_Click(object sender, EventArgs e)
+		{
+			numberClicked("9");
 		}
 
 		private void buttonSign_Click(object sender, EventArgs e)
 		{
-			if (input.Text.Length == 0 || input.Text == divisionByZeroErrorMessage) return;
+			if (input.Text == divisionByZeroErrorMessage) return;
 			input.Text = Convert.ToString(Convert.ToDouble(input.Text) * -1);
-		}
-
-		private void button0_Click(object sender, EventArgs e)
-		{
-			numberClicked("0");
 		}
 
 		private void buttonDot_Click(object sender, EventArgs e)
 		{
-			if (input.Text == divisionByZeroErrorMessage){
+			if (input.Text == divisionByZeroErrorMessage) {
 				input.Text = "0";
 			} 
 			if (input.Text.IndexOf(".") == -1) {
@@ -140,7 +111,7 @@ namespace Calculator2
 
 		private void buttonEqual_Click(object sender, EventArgs e)
 		{
-			if (input.Text.Length == 0 || input.Text == divisionByZeroErrorMessage) return;
+			if (input.Text == divisionByZeroErrorMessage) return;
 			num2 = Convert.ToDouble(input.Text);
 			output.Text = String.Empty;
 			switch (op) {
@@ -171,13 +142,12 @@ namespace Calculator2
 				startNewNumber = false;
 			} else if (input.Text == "0") {
 				input.Text = number;
-			} 
-			else {
+			} else {
 				input.Text += number;
 			}
 		}
 		private void operatorClicked(string op) {
-			if (input.Text.Length == 0 || input.Text == divisionByZeroErrorMessage) return;
+			if (input.Text == divisionByZeroErrorMessage) return;
 			if (input.Text[input.Text.Length - 1] == '.') {
 				input.Text = input.Text.Remove(input.Text.Length - 1);
 			}
@@ -187,5 +157,25 @@ namespace Calculator2
 			this.op = op;
 			startNewNumber = true;
 		}
+		private void buttonC_Click(object sender, EventArgs e)
+		{
+			input.Text = "0";
+			output.Text = String.Empty;
+			this.op = String.Empty;
+			startNewNumber = true;
+		}
+
+		private void buttonDel_Click(object sender, EventArgs e)
+		{
+			if (input.Text == divisionByZeroErrorMessage) {
+				input.Text = "0";
+				startNewNumber = true;
+			} else if (input.Text.Length == 1) {
+				input.Text = "0";
+			} else {
+				input.Text = input.Text.Remove(input.Text.Length - 1);
+			}
+		}
 	}
+
 }
